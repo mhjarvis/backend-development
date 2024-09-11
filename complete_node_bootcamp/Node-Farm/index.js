@@ -35,6 +35,9 @@ console.log("Reading...")
 /////////////////////////////////////////////////////////////
 // SERVER
 
+const data = fs.readFileSync(`${__dirname}/dev-data/data.json`, "utf-8")
+const dataObj = JSON.parse(data)
+
 const server = http.createServer((req, res) => {
 	// SEND BASIC, PT RESPONSE WHEN A CERTAIN REQUEST COMES IN
 	const pathName = req.url
@@ -43,6 +46,10 @@ const server = http.createServer((req, res) => {
 		res.end("This is the Overview page")
 	} else if (pathName === "/product") {
 		res.end("This is the product page!!")
+	} else if (pathName === "/api") {
+		res.writeHead(200, { "Content-type": "application/json" })
+		// SEND DATA BACK TO USER
+		res.end(data)
 	} else {
 		res.writeHead(404, {
 			// Header - need to be set before response

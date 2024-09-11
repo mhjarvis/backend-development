@@ -82,3 +82,34 @@ server.listen(8000, "127.0.0.1", () => {
 ```
 
 ## Building a Web API
+
+```js
+const data = fs.readFileSync(`${__dirname}/dev-data/data.json`, "utf-8")
+const dataObj = JSON.parse(data)
+
+const server = http.createServer((req, res) => {
+	// SEND BASIC, PT RESPONSE WHEN A CERTAIN REQUEST COMES IN
+	const pathName = req.url
+
+	if (pathName === "/" || pathName === "/overview") {
+		res.end("This is the Overview page")
+	} else if (pathName === "/product") {
+		res.end("This is the product page!!")
+	} else if (pathName === "/api") {
+		res.writeHead(200, { "Content-type": "application/json" })
+		// SEND DATA BACK TO USER
+		res.end(data)
+	} else {
+		res.writeHead(404, {
+			// Header - need to be set before response
+			"Content-type": "text/html",
+		})
+		res.end("<h1>Page not found!</h1>")
+	}
+})
+
+// GET SERVER TO LISTEN ON PORT 8000
+server.listen(8000, "127.0.0.1", () => {
+	console.log("Listening to request on port 8000")
+})
+```
