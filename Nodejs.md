@@ -37,3 +37,48 @@ fs.writeFile("./txt/final.txt", `${data2}`, "utf-8", (err) => {
 
 - Synchronous code is blocking code because it causes the system to wait until it is finished.
 - Asynchronous code is non-blocking code because other processes can finish while it completes stuff in the background.
+
+## Creating a Simple Web Server
+
+```js
+const http = require("http")
+
+const server = http.createServer((req, res) => {
+	res.end("Hello from server.")
+})
+
+server.listen(8000, "127.0.0.1", () => {
+	console.log("Listenting to req on port 8000")
+})
+```
+
+## Routing
+
+```js
+const url = require("url")
+
+const server = http.createServer((req, res) => {
+	// SEND BASIC, PT RESPONSE WHEN A CERTAIN REQUEST COMES IN
+	const pathName = req.url
+
+	// ROUTING STARTS
+	if (pathName === "/" || pathName === "/overview") {
+		res.end("This is the Overview page")
+	} else if (pathName === "/product") {
+		res.end("This is the product page!!")
+	} else {
+		res.writeHead(404, {
+			// Header - need to be set before response
+			"Content-type": "text/html",
+		})
+		res.end("<h1>Page not found!</h1>")
+	}
+})
+
+// GET SERVER TO LISTEN ON PORT 8000
+server.listen(8000, "127.0.0.1", () => {
+	console.log("Listening to request on port 8000")
+})
+```
+
+## Building a Web API
