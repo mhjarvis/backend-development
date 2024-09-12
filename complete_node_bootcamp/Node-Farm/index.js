@@ -2,8 +2,9 @@ const fs = require("fs")
 const http = require("http")
 const url = require("url")
 
-/////////////////////////////////////////////////////////////
-// FILES
+/***************************
+ * READING IN FILES
+ ***************************/
 
 // BLOCKING, SYNCHRONOUS WAY
 /* 
@@ -32,24 +33,43 @@ console.log("File written!")
 console.log("Reading...")
  */
 
-/////////////////////////////////////////////////////////////
-// SERVER
+/***************************
+ * SERVER
+ ***************************/
 
+// Read in json data
+const tempOverview = fs.readFileSync(
+	`${__dirname}/templates/template-overview.html`,
+	"utf-8"
+)
+const tempCard = fs.readFileSync(
+	`${__dirname}/templates/template-card.html`,
+	"utf-8"
+)
+const tempProduct = fs.readFileSync(
+	`${__dirname}/templates/template-product.html`,
+	"utf-8"
+)
 const data = fs.readFileSync(`${__dirname}/dev-data/data.json`, "utf-8")
+
 const dataObj = JSON.parse(data)
 
 const server = http.createServer((req, res) => {
-	// SEND BASIC, PT RESPONSE WHEN A CERTAIN REQUEST COMES IN
 	const pathName = req.url
 
+	// OVERVIEW PAGE
 	if (pathName === "/" || pathName === "/overview") {
-		res.end("This is the Overview page")
+		res.writeHead(200, { "Content-type": "text/html" })
+		res.end(tempOverview)
+		// PRODUCT PAGE
 	} else if (pathName === "/product") {
 		res.end("This is the product page!!")
+		// API PAGE
 	} else if (pathName === "/api") {
 		res.writeHead(200, { "Content-type": "application/json" })
 		// SEND DATA BACK TO USER
 		res.end(data)
+		// NOT FOUND PAGE
 	} else {
 		res.writeHead(404, {
 			// Header - need to be set before response
@@ -59,9 +79,20 @@ const server = http.createServer((req, res) => {
 	}
 })
 
-// GET SERVER TO LISTEN ON PORT 8000
+// Start server and begin listening on port 8000
 server.listen(8000, "127.0.0.1", () => {
 	console.log("Listening to request on port 8000")
 })
 
 // ADD BASIC ROUTING
+
+const x = 2
+let y = 4
+
+function update(arg) {
+	return Math.random() + y * arg
+}
+
+y = 2
+
+const result = update(x)
