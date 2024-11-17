@@ -28,6 +28,7 @@ Make use of the `package.json` file to add scripts that you can execute with npm
 
 ```js
     npm install nodemon --save-dev      // only for development use
+	npm install --save express		// install for production dependency
 
     -g      // ending will install the package globally
 ```
