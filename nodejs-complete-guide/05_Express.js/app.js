@@ -1,20 +1,16 @@
-const http = require("http")
 const express = require("express") // exported as a function
+const bodyParser = require("body-parser")
 
 const app = express() // app here is a valid request handler
 
-app.use("/", (req, res, next) => {
-	console.log("this always runs")
-	next()
-})
-// this should only trigger when requests go to nothing
-app.use("/add-product", (req, res, next) => {
-	res.send("<h1>Add Product</h1>") // send a response
-})
+const adminRoutes = require("./routes/admin")
+const shopRoutes = require("./routes/shop")
 
-app.use("/", (req, res, next) => {
-	res.send("<h1>Hello from the Index!</h1>") // send a response
-})
+// parse incoming request body; will call next(); will handle body parsing
+app.use(bodyParser.urlencoded({ extended: false }))
+
+app.use(adminRoutes)
+app.use(shopRoutes)
 
 // instead of using this:
 /* 

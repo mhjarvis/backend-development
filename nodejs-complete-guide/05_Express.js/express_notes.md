@@ -67,3 +67,32 @@ app.use("/", (req, res, next) => {
 	res.send("<h1>Hello from the Index!</h1>") // send a response
 })
 ```
+
+## Parse Incoming Requests
+
+Use `body-parser` for parsing incoming requests.
+
+```js
+npm install --save body-parser
+
+// parse incoming request body; will call next(); will handle body parsing
+app.use(bodyParser.urlencoded({ extended: false }))
+
+app.use("/add-product", (req, res, next) => {
+	res.send(
+		"<form action='/product' method='POST'><input type='text' name='title'><button type='submit'>Add Product</button></form>"
+	) // send a response
+})
+
+// you can omit arguments if you don't use them (e.g. next or res)
+app.use("/product", (req, res, next) => {
+	console.log(req.body)
+	res.redirect("/")
+})
+```
+
+## Using Express Router
+
+Folder structure:
+
+- routes
