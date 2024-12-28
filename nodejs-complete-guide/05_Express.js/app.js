@@ -12,11 +12,9 @@ app.use(bodyParser.urlencoded({ extended: false }))
 app.use(adminRoutes)
 app.use(shopRoutes)
 
-// instead of using this:
-/* 
-const server = http.createServer(app) 
-server.listen(3000)
-*/
-// we can just use:
+// default
+app.use((req, res, next) => {
+	res.status(404).send("<h1>Page not found</h1>")
+})
 
 app.listen(3000)
