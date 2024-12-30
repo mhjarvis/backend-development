@@ -13,3 +13,7 @@
 
 `npm install --save express` - install express as a dependency
 `npm install --save body-parser` - install body-parser
+
+To implement nodemon, you can add it to the `package.json` file:
+
+`"start": "nodemon app.js"`

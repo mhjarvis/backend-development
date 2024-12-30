@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Users - Home Tracker</title>
+		<style>
+			body {
+				font-family: Arial, sans-serif;
+				margin: 0;
+				padding: 0;
+			}
+			header {
+				background-color: #007bff;
+				color: white;
+				padding: 1rem 0;
+			}
+			.nav {
+				display: flex;
+				justify-content: space-between;
+				align-items: center;
+				max-width: 1200px;
+				margin: 0 auto;
+				padding: 0 1rem;
+			}
+			.nav a {
+				color: white;
+				text-decoration: none;
+				margin: 0 1rem;
+				font-weight: bold;
+				transition: color 0.3s;
+			}
+			.nav a:hover {
+				color: #ffdd57;
+			}
+			main {
+				padding: 2rem;
+				text-align: center;
+			}
+			.user-list {
+				margin: 2rem auto;
+				max-width: 600px;
+				text-align: left;
+			}
+			.user-list li {
+				background-color: #f9f9f9;
+				margin: 0.5rem 0;
+				padding: 0.5rem;
+				border: 1px solid #ddd;
+				border-radius: 4px;
+			}
+		</style>
+	</head>
+	<body>
+		<header>
+			<div class="nav">
+				<h1>Home Tracker</h1>
+				<nav>
+					<a href="/">Home</a>
+					<a href="/users">Users</a>
+				</nav>
+			</div>
+		</header>
+		<main>
+			<h2>Users</h2>
+			<p>Here is a list of registered users:</p>
+			<ul class="user-list">
+				<li>User 1</li>
+				<li>User 2</li>
+				<li>User 3</li>
+			</ul>
+		</main>
+	</body>
+</html>

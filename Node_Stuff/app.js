@@ -14,6 +14,9 @@ const app = express()
 // parse incoming data
 app.use(bodyParser.urlencoded({ extended: false }))
 
+// pass in folder you want to serve statically
+app.use(express.static(path.join(__dirname, "public")))
+
 // routes
 app.use("/admin", adminRoutes)
 app.use(shopRoutes)
