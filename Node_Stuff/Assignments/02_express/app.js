@@ -6,8 +6,8 @@ const path = require("path") // makes path work on all OSs
 const express = require("express")
 const bodyParser = require("body-parser")
 
-const adminRoutes = require("../routes/admin")
-const shopRoutes = require("../routes/shop")
+const adminRoutes = require("../../routes/admin")
+const shopRoutes = require("../../routes/shop")
 
 const app = express()
 

@@ -6,7 +6,7 @@ const path = require("path") // makes path work on all OSs
 const express = require("express")
 const bodyParser = require("body-parser")
 
-const adminRoutes = require("./routes/admin")
+const adminData = require("./routes/admin")
 const shopRoutes = require("./routes/shop")
 
 const app = express()
@@ -18,7 +18,7 @@ app.use(bodyParser.urlencoded({ extended: false }))
 app.use(express.static(path.join(__dirname, "public")))
 
 // routes
-app.use("/admin", adminRoutes)
+app.use("/admin", adminData.routes)
 app.use(shopRoutes)
 
 // add 404 error page with catch-all route
